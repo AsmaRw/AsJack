@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './componant/carte/Cartes.jsx'
+
 //import Dealer from './componant/Play/Dealer.jsx'
 //import Player from './componant/Play/Player.jsx'
 
