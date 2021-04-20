@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './componant/carte/Cartes.jsx'
+// import Cartes from './componant/carte/Cartes.jsx'
 
 import Button from './componant/button/Button.jsx'
 //import Dealer from './componant/Play/Dealer.jsx'
@@ -43,32 +43,33 @@ class Table extends React.Component {
   //   }
   render() {
     return (
-      <div>
-        <h1 style = {{ color: '#feb236', textAlign: 'center'}}>Black Jack</h1>
+      <div style = {{height : '100vh', position: 'relative'}}>
+        <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
+        <div style={{bottom: '20px', position: 'absolute'}} className= "row col-6 offset-3 flex d-flex justify-content-between">
+          <div className="d-grid gap-2">
+            <Button
+              onClick={this.onClickGive}
+              classe="btn btn-outline-warning btn-lg"
+              color="white"
+              bcolor="rgba(18, 102, 241, 0.7)"
+              name="give"
+            />
+          </div>
 
-        <div style={{ float: "both" }}>
-          <Button
-            onClick={this.onClickGive}
-            classe="btn btn-outline-primary hover-zoom"
-            color="white"
-            bcolor="rgba(18, 102, 241, 0.5)"
-            name="give"
-          />
-        </div>
+          <div>
+            {/* carte du joueur */}
+          </div>
+          <div className="d-grid gap-2">
+            <Button
+              onClick={this.onClickStop}
+              classe="btn btn-outline-danger btn-lg"
+              color="white"
+              bcolor="rgba(178, 60, 253, 0.5)"
+              name="stop"
+            />
+          </div>
 
-        <div>
-          {/* carte du joueur */}
         </div>
-        <div>
-          <Button
-            onClick={this.onClickStop}
-            classe="btn btn-outline-danger hover-zoom"
-            color="white"
-            bcolor="rgba(178, 60, 253, 0.2)"
-            name="stop"
-          />
-        </div>
-
       </div>
     );
   }
