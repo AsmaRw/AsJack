@@ -12,8 +12,6 @@ const lancePremier = true
 const cardCount = 52
 var lancePremier = false;
 const cardSelected = []
-let rdmNum = 0
-let cardSelected = []
 
 class Cartes extends React.Component {
 
@@ -32,10 +30,11 @@ class Cartes extends React.Component {
 
   // console.log(typeof cardCount, cardCount)
 
-
-
-
   rndCarte(lancePremier) {
+
+    let rdmNum = 0
+
+    let cardSelected = []
 
     if (lancePremier) {
 
@@ -77,17 +76,18 @@ class Cartes extends React.Component {
       console.log(cardSelected)
 
     }
-    return
+
   }
-
-
   render() {
     return (
       <div>
-        <img class="CarteRecu" src={this.props.urlCarte} ></img>
+        <img class="CarteRecu" src="https://deckofcardsapi.com/static/img/KS.png" ></img>
       </div>
     );
   }
-
 }
-export default Cartes;
+
+
+
+
+  export default Cartes;
