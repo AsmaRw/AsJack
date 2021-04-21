@@ -6,12 +6,13 @@ class Cartes extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="cartes">
         {this.props.cardList.map(
           function (x) {
             const url = "https://deckofcardsapi.com/static/img/" + x + "." + "png"
             return (
-              <img src={url} />
+              <img src={url}
+              style={{height: 150, width: 100}}  />
             )
           })}
       </div>
