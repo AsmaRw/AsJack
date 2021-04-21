@@ -3,22 +3,11 @@ import React from "react";
 
 class Cartes extends React.Component {
 
-  constructor() {
-    super()
-
-    this.state = {
-      rndCarte: "",
-      urlCarte: "",
-      lancePremier: "",
-      cardSelected: "",
-    }
-  }
-
-
-  render(props) {
+  
+  render() {
     return (
       <div>
-        {this.props.playerCartList.map(
+        {this.props.cardList.map(
           function (x) {
             const url = "https://deckofcardsapi.com/static/img/" + x + "." + "png"
             return (
