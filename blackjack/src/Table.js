@@ -35,32 +35,31 @@ class Table extends React.Component {
 
   rndCarte() {
 
-  
-        rndNumTemp = Math.floor(Math.random() * ((cardCount - 1) - min + cardCount) + min);
+    rndNumTemp = Math.floor(Math.random() * 53);
 
-        if (rndNumTemp > 52) { rndNumTemp = rndNumTemp - 10 } else if (rndNumTemp < 1) { rndNumTemp = rndNumTemp + 10 }
+    if (rndNumTemp > 52) { rndNumTemp = rndNumTemp - 10 } else if (rndNumTemp < 1) { rndNumTemp = rndNumTemp + 10 }
 
-        rndCarteTemp = (cardArray[rndNumTemp - 1]);
-        // console.log(rndCarteTemp);
-        cardSelected.push(cardArray[rndNum - 1])
-        // temp = (cardSelected[0].substring(0, 1));
-
-        // console.log(cardSelected)
-        cardSelected.push(rndCarteTemp)
-        cardSelected.push(this.state.cardSelected)
-        // console.log(cardSelected)
-        return cardSelected;
+    rndCarteTemp = (cardArray[rndNumTemp - 1]);
+    cardSelected.push(rndCarteTemp)
+    console.log(cardSelected)
+    return cardSelected;
   }
 
 
-    onclickGive=()=>{
-      this.rndCarte()
-      const carteActuel= this.state.playerCardList.splice()
-      const valueCarte= parseInt(cardSelected[1])
+  onClickGive = () => {
+    this.rndCarte()
+    //console.log(this.rndCarte())
+    //console.log(this.state.playerCartList)
+    if (this.state.playerCartList.length > 0) {
+      const carteActuel = this.state.playerCardList.splice()
+      //console.log(this.state.playerCartList.splice())
+      const valueCarte = parseInt(cardSelected[1])
       carteActuel.push(cardSelected[2])
-      this.setState({counterPlayer: this.state.counterPlayer + valueCarte})
-      this.setState({playerCardList:carteActuel})
+      this.setState({ counterPlayer: this.state.counterPlayer + valueCarte })
+      this.setState({ playerCardList: carteActuel })
     }
+
+  }
 
   render() {
     return (
@@ -78,9 +77,9 @@ class Table extends React.Component {
             />
           </div>
           <div>
-            <img src='https://deckofcardsapi.com/static/img/KS.png' alt="W3Schools" width="104" height="142" />
+            {/* <img src='https://deckofcardsapi.com/static/img/KS.png' alt="W3Schools" width="104" height="142" /> */}
             {/* carte du joueur */}
-            <Cartes/>
+            <Cartes cardList={this.state.playerCartList} />
           </div>
           <div className="d-grid gap-2">
             <Button
