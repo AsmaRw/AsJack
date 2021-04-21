@@ -3,3 +3,9 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.cartes {
+  position: absolute;
+  bottom: 100px;
+  left: 500px;
+}
