@@ -20,7 +20,7 @@ let temp = ""
 
 let rndCarteTemp = "";
 let rndNumTemp = 0;
-let cardSelected = []
+// let cardSelected = []
 class Table extends React.Component {
   constructor() {
     super();
@@ -28,37 +28,52 @@ class Table extends React.Component {
     this.state = {
       counterPlayer: 0,
       counterDealer: 0,
-      playerCartList: [],
-      dealerCartList: []
+      playerCardList: [],
+      dealerCardList: []
     }
   }
 
   rndCarte() {
-
     rndNumTemp = Math.floor(Math.random() * 53);
 
     if (rndNumTemp > 52) { rndNumTemp = rndNumTemp - 10 } else if (rndNumTemp < 1) { rndNumTemp = rndNumTemp + 10 }
 
-    rndCarteTemp = (cardArray[rndNumTemp - 1]);
-    cardSelected.push(rndCarteTemp)
-    console.log(cardSelected)
-    return cardSelected;
+    rndCarteTemp = cardArray[rndNumTemp - 1];
+    console.log("rndCarteTemp", rndCarteTemp)
+
+    return rndCarteTemp;
   }
 
 
   onClickGive = () => {
-    this.rndCarte()
+    const cardSelected = this.rndCarte()
     //console.log(this.rndCarte())
-    //console.log(this.state.playerCartList)
-    if (this.state.playerCartList.length > 0) {
-      const carteActuel = this.state.playerCardList.splice()
-      //console.log(this.state.playerCartList.splice())
-      const valueCarte = parseInt(cardSelected[1])
-      carteActuel.push(cardSelected[2])
-      this.setState({ counterPlayer: this.state.counterPlayer + valueCarte })
-      this.setState({ playerCardList: carteActuel })
+
+    const valueCarte = this.transformCardIntoInt(cardSelected.split("")[0])
+    const totalPlayerValue = this.state.counterPlayer + valueCarte
+
+    this.setState({
+      counterPlayer: totalPlayerValue,
+      playerCardList: [...this.state.playerCardList, cardSelected]
+    })
+
+    this.calculateCard(totalPlayerValue)
+  }
+
+  transformCardIntoInt(cardValue) {
+    if (cardValue == "K" || cardValue == "Q" || cardValue == "J" || cardValue == "A") {
+      cardValue = "10"
     }
 
+    return parseInt(cardValue)
+  }
+
+  calculateCard(value) {
+    if (value > 21) {
+      console.log("Busted")
+    } else {
+      // move current total card values to previousCardsValues
+    }
   }
 
   render() {
@@ -79,7 +94,7 @@ class Table extends React.Component {
           <div>
             {/* <img src='https://deckofcardsapi.com/static/img/KS.png' alt="W3Schools" width="104" height="142" /> */}
             {/* carte du joueur */}
-            <Cartes cardList={this.state.playerCartList} />
+            <Cartes cardList={this.state.playerCardList} />
           </div>
           <div className="d-grid gap-2">
             <Button
