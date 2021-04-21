@@ -10,7 +10,7 @@ const min = 0
 const count = 1
 const lancePremier = true
 const cardCount = 52
-var lancePremier = false;
+// var lancePremier = false;
 const cardSelected = []
 
 class Cartes extends React.Component {
@@ -19,69 +19,78 @@ class Cartes extends React.Component {
     super(props)
 
     this.state = {
-      rndCarte,
-      urlCarte,
-      lancePremier,
-      cardSelected
+      rndCarte: "",
+      urlCarte: "",
+      lancePremier: "",
+      cardSelected: "",
+      cardList: ["AS", "7C"] //juste pour tester a effacer apres 
     }
 
-    this.rndCarte = this.rndCarte.bind(this);
+    // this.rndCarte = this.rndCarte.bind(this);
   }
 
   // console.log(typeof cardCount, cardCount)
 
-  rndCarte(lancePremier) {
+  // rndCarte(lancePremier) {
 
-    let rdmNum = 0
+  //   let rdmNum = 0
 
-    let cardSelected = []
+  //   let cardSelected = []
 
-    if (lancePremier) {
+  //   if (lancePremier) {
 
-      while (count <= 2) {
-        rdmNum = Math.floor(Math.random() * ((cardCount - 1) - min + count) + min);
-        // console.log(rdmNum)
-        if (rdmNum > 52) { rdmNum = rdmNum - 10 } else if (rdmNum < 1) { rdmNum = rdmNum + 10 }
+  //     while (count <= 2) {
+  //       rdmNum = Math.floor(Math.random() * ((cardCount - 1) - min + count) + min);
+  //       // console.log(rdmNum)
+  //       if (rdmNum > 52) { rdmNum = rdmNum - 10 } else if (rdmNum < 1) { rdmNum = rdmNum + 10 }
 
-        count++
-        rndCarte = (cardArray[rdmNum - 1]);
+  //       count++
+  //       rndCarte = (cardArray[rdmNum - 1]);
 
-        cardSelected.push(cardArray[rdmNum - 1])
-        var temp = (cardSelected[0].substring(0, 1));
+  //       cardSelected.push(cardArray[rdmNum - 1])
+  //       var temp = (cardSelected[0].substring(0, 1));
 
-        cardSelected.push(temp.substring(0, 1));
+  //       cardSelected.push(temp.substring(0, 1));
 
-        // console.log(temp)
-        cardSelected.push(urlCarte + rndCarte + ".png")
+  //       // console.log(temp)
+  //       cardSelected.push(urlCarte + rndCarte + ".png")
 
-        console.log(cardSelected)
-      }
-    } else {
+  //       console.log(cardSelected)
+  //     }
+  //   } else {
 
-      rdmNum = Math.floor(Math.random() * ((cardCount - 1) - min + count) + min);
-      // console.log(rdmNum)
-      if (rdmNum > 52) { rdmNum = rdmNum - 10 } else if (rdmNum < 1) { rdmNum = rdmNum + 10 }
+  //     rdmNum = Math.floor(Math.random() * ((cardCount - 1) - min + count) + min);
+  //     // console.log(rdmNum)
+  //     if (rdmNum > 52) { rdmNum = rdmNum - 10 } else if (rdmNum < 1) { rdmNum = rdmNum + 10 }
 
-      // console.log(cardArray[rdmNum - 1])
-      rndCarte = (cardArray[rdmNum - 1]);
+  //     // console.log(cardArray[rdmNum - 1])
+  //     rndCarte = (cardArray[rdmNum - 1]);
 
-      cardSelected.push(cardArray[rdmNum - 1])
-      var temp = (cardSelected[0].substring(0, 1));
+  //     cardSelected.push(cardArray[rdmNum - 1])
+  //     var temp = (cardSelected[0].substring(0, 1));
 
-      cardSelected.push(temp.substring(0, 1));
+  //     cardSelected.push(temp.substring(0, 1));
 
-      // console.log(temp)
-      cardSelected.push(urlCarte + rndCarte + ".png")
+  //     // console.log(temp)
+  //     cardSelected.push(urlCarte + rndCarte + ".png")
 
-      console.log(cardSelected)
+  //     console.log(cardSelected)
 
-    }
+  //   }
 
-  }
+  // }
   render() {
     return (
       <div>
-        <img class="CarteRecu" src="https://deckofcardsapi.com/static/img/KS.png" ></img>
+        {/* {this.props.cardList.map( */}
+        {this.state.cardList.map(
+
+          function (x) {
+            const url = "https://deckofcardsapi.com/static/img/" + x + "." + "png"
+            return (
+              <img src={url} />
+            )
+          })}
       </div>
     );
   }
@@ -90,4 +99,4 @@ class Cartes extends React.Component {
 
 
 
-  export default Cartes;
+export default Cartes;

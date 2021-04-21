@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Cartes from './componant/carte/Cartes.jsx'
 
 import Button from './componant/button/Button.jsx'
+import Cartes from "./componant/carte/Cartes";
 //import Dealer from './componant/Play/Dealer.jsx'
 //import Player from './componant/Play/Player.jsx'
 
@@ -16,13 +17,19 @@ class Table extends React.Component {
       deck: [],
       player: 0,
       dealer: 0,
-
+      dealerCardList:[],
+      playerCardList:[]
     }
   }
 
+
+
+
+
+
+
   //  getrandomcart=()=>{
-  //    const updateDeck = deck
-  //    const upRandom = 
+
   //  }
 
 
@@ -34,9 +41,14 @@ class Table extends React.Component {
   //   getDealer=()=>{
 
   //   }
-  //   onclickGive=()=>{
-
-  //   }
+    onclickGive=()=>{
+      this.rndCarte
+      const carteActuel= this.state.playerCardList.splice()
+      valueCarte= parseInt(cardSelected[1])
+      carteActuel.push(cardSelected[2])
+      this.setState({player: player+valueCarte})
+      this.setState({playerCardList:carteActuel})
+    }
 
   //   onclickStop=()=>{
 
@@ -58,6 +70,7 @@ class Table extends React.Component {
 
           <div>
             {/* carte du joueur */}
+            <Cartes/>
           </div>
           <div className="d-grid gap-2">
             <Button
