@@ -16,38 +16,17 @@ class Table extends React.Component {
       deck: [],
       player: 0,
       dealer: 0,
-      cardPlayer: []
+      countPlayer: []
 
     }
+    this.PlayerCarte = this.PlayerCarte.bind(this)
   }
 
-
-  //   getrandomcart = () => {
-  //     const updateDeck = deck
-  //     const upRandom = 
-  //  }
-
-
-  //   getPlayer=()=>{
-
-  //   }
-
-
-  //   getDealer=()=>{
-
-  //   }
-  //   onclickGive=()=>{
-
-  //   }
-
-  //   onclickStop=()=>{
-
-  //   }
   render() {
     return (
       <div style={{ height: '100vh', position: 'relative' }}>
         <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
-        <img src = 'https://m.media-amazon.com/images/I/71g6q+jPYAL._AC_UL320_.jpg'  alt="W3Schools" width="104" height="142"/>
+        <img src='https://m.media-amazon.com/images/I/71g6q+jPYAL._AC_UL320_.jpg' alt="W3Schools" width="104" height="142" />
         <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
           <div className="d-grid gap-2">
             <Button
