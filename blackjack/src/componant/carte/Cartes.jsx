@@ -17,8 +17,8 @@ let temp = ""
 
 class Cartes extends React.Component {
 
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
 
     this.state = {
       rndCarte,
@@ -93,7 +93,7 @@ class Cartes extends React.Component {
   render() {
     return (
       <div>
-        <img class="CarteRecu" src={this.props.urlCarte} alt= "" ></img>
+        <img class="CarteRecu" src={this.props.urlCarte} value={this.props.rndCarte} alt= "" ></img>
       </div>
     );
   }
