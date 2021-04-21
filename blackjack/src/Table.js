@@ -47,6 +47,7 @@ class Table extends React.Component {
     return (
       <div style={{ height: '100vh', position: 'relative' }}>
         <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
+        <img src = 'https://m.media-amazon.com/images/I/71g6q+jPYAL._AC_UL320_.jpg'  alt="W3Schools" width="104" height="142"/>
         <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
           <div className="d-grid gap-2">
             <Button
@@ -57,7 +58,6 @@ class Table extends React.Component {
               name="give"
             />
           </div>
-
           <div>
             <img src='https://deckofcardsapi.com/static/img/KS.png' alt="W3Schools" width="104" height="142" />
           </div>
