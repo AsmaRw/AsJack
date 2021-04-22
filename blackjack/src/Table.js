@@ -3,8 +3,8 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from './componant/button/Button.jsx'
 import Cartes from "./componant/carte/Cartes";
-//import Dealer from './componant/Play/Dealer.jsx'
-//import Player from './componant/Play/Player.jsx'
+import Game from './componant/Play/Game.jsx'
+import DealerCard from "./componant/carte/DealerCard.jsx";
 
 const cardArray = [
   "KS", "QS", "JS", "AS", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "0S",
@@ -29,7 +29,8 @@ class Table extends React.Component {
       counterPlayer: 0,
       counterDealer: 0,
       playerCardList: [],
-      dealerCardList: []
+      dealerCardList: [],
+      startGame: false
     }
   }
 
@@ -41,23 +42,35 @@ class Table extends React.Component {
     rndCarteTemp = cardArray[rndNumTemp - 1];
     console.log("rndCarteTemp", rndCarteTemp)
 
-    return rndCarteTemp;
+    return rndCarteTemp
   }
 
 
   onClickGive = () => {
     const cardSelected = this.rndCarte()
+    console.log('cardSelected :', cardSelected)
+    const cardSelectedDealer = this.rndCarte()
+    console.log('cardSelectedDealer :', cardSelectedDealer)
+
     //console.log(this.rndCarte())
 
     const valueCarte = this.transformCardIntoInt(cardSelected.split("")[0])
     const totalPlayerValue = this.state.counterPlayer + valueCarte
+    const valueCarteDealer = this.transformCardIntoInt(cardSelectedDealer.split("")[0])
+    const totalValueDealer = this.state.counterDealer + valueCarteDealer
 
     this.setState({
       counterPlayer: totalPlayerValue,
       playerCardList: [...this.state.playerCardList, cardSelected]
     })
+    this.setState({
+      counterDealer: totalValueDealer,
+      dealerCardList: [...this.state.dealerCardList, cardSelectedDealer]
+    })
 
+    console.log('DealerCardList :', this.state.dealerCardList)
     this.calculateCard(totalPlayerValue)
+    this.calculateCard(totalValueDealer)
   }
 
   transformCardIntoInt(cardValue) {
@@ -68,6 +81,13 @@ class Table extends React.Component {
     return parseInt(cardValue)
   }
 
+  startGame = () => {
+    this.setState({
+      startGame: true
+    })
+  }
+
+
   calculateCard(value) {
     if (value > 21) {
       console.log("Busted")
@@ -77,38 +97,51 @@ class Table extends React.Component {
   }
 
   render() {
-    return (
-      <div style={{ height: '100vh', position: 'relative' }}>
-        <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
-        <img src='https://m.media-amazon.com/images/I/71g6q+jPYAL._AC_UL320_.jpg' alt="W3Schools" width="104" height="142" />
-        <Cartes cardList={this.state.playerCardList} />
-        <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
-          <div className="d-grid gap-2">
-            <Button
-              onClick={this.onClickGive}
-              classe="btn btn-outline-warning btn-lg"
-              color="white"
-              bcolor="rgba(18, 102, 241, 0.7)"
-              name="give"
-            />
-          </div>
-          <div>
-            {/* <img src='https://deckofcardsapi.com/static/img/KS.png' alt="W3Schools" width="104" height="142" /> */}
-            {/* carte du joueur */}
-          </div>
-          <div className="d-grid gap-2">
-            <Button
-              onClick={this.onClickStop}
-              classe="btn btn-outline-danger btn-lg"
-              color="white"
-              bcolor="rgba(178, 60, 253, 0.5)"
-              name="stop"
-            />
-          </div>
+    if (this.state.startGame == false) {
+      return (
+        <Game startGame={this.startGame} />
+      )
+    } else {
+      return (
+        <div>
+            {/* <div>
+              <DealerCard cardSelectedDealer={this.state.dealerCardList} />
+            <Cartes cardList={this.state.playerCardList} />
 
+            </div> */}
+          <div style={{ height: '100vh', position: 'relative' }}>
+            <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
+            {/* <img src='https://m.media-amazon.com/images/I/71g6q+jPYAL._AC_UL320_.jpg' alt="W3Schools" width="104" height="142" /> */}
+            <DealerCard cardSelectedDealer={this.state.dealerCardList} />
+            <Cartes cardList={this.state.playerCardList} />
+            <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
+              <div className="d-grid gap-2">
+                <Button
+                  onClick={this.onClickGive}
+                  classe="btn btn-outline-warning btn-lg"
+                  color="white"
+                  bcolor="rgba(18, 102, 241, 0.7)"
+                  name="give"
+                />
+              </div>
+              <div>
+                {/* <Cartes cardList={this.state.playerCardList} /> */}
+              </div>
+              <div className="d-grid gap-2">
+                <Button
+                  onClick={this.onClickStop}
+                  classe="btn btn-outline-danger btn-lg"
+                  color="white"
+                  bcolor="rgba(178, 60, 253, 0.5)"
+                  name="stop"
+                />
+              </div>
+
+            </div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

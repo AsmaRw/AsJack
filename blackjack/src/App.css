@@ -5,7 +5,18 @@ body{
 }
 
 .cartes {
-  position: absolute;
-  bottom: 100px;
-  left: 500px;
+  text-align: center;
+  margin: 50px ;
+}
+
+.game{
+  text-align: center;
+  padding: 100px 0px;
+}
+
+.game h1{
+  font-size: 5em;
+  color:#feb236;
+  padding: 20px 20px;
+  margin: 20px 20px;
 }
