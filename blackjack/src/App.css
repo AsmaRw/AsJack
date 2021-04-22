@@ -20,3 +20,8 @@ body{
   padding: 20px 20px;
   margin: 20px 20px;
 }
+
+.playGame h1 {
+  font-size: 3em;
+  margin: 30px 0;
+}
