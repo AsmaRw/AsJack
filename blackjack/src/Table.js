@@ -17,7 +17,7 @@ const cardCount = 52
 
 let rndNum = 0
 let temp = ""
-
+let arrayLength = 0
 let rndCarteTemp = "";
 let rndNumTemp = 0;
 // let cardSelected = []
@@ -30,11 +30,17 @@ class Table extends React.Component {
       counterDealer: 0,
       playerCardList: [],
       dealerCardList: [],
-      startGame: false
+      startGame: false,
+      premierLance: "yes",
+      endGame: false,
+      nameOfWinner: ""
     }
   }
 
   rndCarte() {
+
+    arrayLength = + this.state.playerCardList.length;
+
     rndNumTemp = Math.floor(Math.random() * 53);
 
     if (rndNumTemp > 52) { rndNumTemp = rndNumTemp - 10 } else if (rndNumTemp < 1) { rndNumTemp = rndNumTemp + 10 }
@@ -47,10 +53,11 @@ class Table extends React.Component {
 
 
   onClickGive = () => {
+
     const cardSelected = this.rndCarte()
-    console.log('cardSelected :', cardSelected)
+    console.log('player card :', cardSelected)
     const cardSelectedDealer = this.rndCarte()
-    console.log('cardSelectedDealer :', cardSelectedDealer)
+    console.log('dealer card :', cardSelectedDealer)
 
     //console.log(this.rndCarte())
 
@@ -69,12 +76,19 @@ class Table extends React.Component {
     })
 
     console.log('DealerCardList :', this.state.dealerCardList)
-    this.calculateCard(totalPlayerValue)
-    this.calculateCard(totalValueDealer)
+
+    console.log("totalplayervalue", totalPlayerValue); console.log("totalValueDealer", totalValueDealer)
+    console.log("totalplayervalue", this.state.counterPlayer); console.log("totalValueDealer", this.state.counterDealer)
+
+
+    // this.calculateCard(totalPlayerValue)
+    // this.calculateCard(totalValueDealer)
+    this.calculateCard(totalPlayerValue, "Player")
+    this.calculateCard(totalValueDealer, "Dealer")
   }
 
   transformCardIntoInt(cardValue) {
-    if (cardValue == "K" || cardValue == "Q" || cardValue == "J" || cardValue == "A") {
+    if (cardValue === "K" || cardValue === "Q" || cardValue === "J" || cardValue === "A" || cardValue === "0") {
       cardValue = "10"
     }
 
@@ -88,12 +102,28 @@ class Table extends React.Component {
   }
 
 
-  calculateCard(value) {
+  calculateCard(value, name) {
+    console.log("value in calculatecard", value)
     if (value > 21) {
-      console.log("Busted")
-    } else {
-      // move current total card values to previousCardsValues
-    }
+      // console.log("Busted")
+      this.setState({
+        endGame: true,
+        nameOfWinner: name == "Dealer" ? "Player" : "Dealer"
+      })
+      return
+    } else if(value === 21) {
+      // console.log("Busted")
+      this.setState({
+        endGame: true,
+        nameOfWinner: name
+      })
+      return
+    } 
+    // } else if (value <= 16) {
+    //   console.log(name, "Take card and continue the game...")
+    // } else if (value > 16 && value < 21) {
+    //   console.log(name, "Do you want to Stand or Hit and continue the game?")
+    // }
   }
 
   render() {
@@ -102,45 +132,48 @@ class Table extends React.Component {
         <Game startGame={this.startGame} />
       )
     } else {
-      return (
-        <div className='playGame'>
-          {/* <div>
-              <DealerCard cardSelectedDealer={this.state.dealerCardList} />
-            <Cartes cardList={this.state.playerCardList} />
+      return ( <div>
+        {this.state.endGame ? 
+          (<div>
+            <h1>Winner is {this.state.nameOfWinner}</h1>
+          </div>) 
+          : (
+        <div className="playGame">
+              <div style={{ height: '100vh', position: 'relative' }}>
+                <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
+                {/* <img src='https://m.media-amazon.com/images/I/71g6q+jPYAL._AC_UL320_.jpg' alt="W3Schools" width="104" height="142" /> */}
 
-            </div> */}
-          <div style={{ height: '100vh', position: 'relative' }}>
-            <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
-            {/* <img src='https://m.media-amazon.com/images/I/71g6q+jPYAL._AC_UL320_.jpg' alt="W3Schools" width="104" height="142" /> */}
-            <DealerCard cardSelectedDealer={this.state.dealerCardList} />
-            <Cartes cardList={this.state.playerCardList} />
-            <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
-              <div className="d-grid gap-2">
-                <Button
-                  onClick={this.onClickGive}
-                  classe="btn btn-outline-warning btn-lg rounded-pill"
-                  color="white"
-                  // bcolor="rgba(18, 102, 241, 0.7)"
-                  bcolor="#0d6efd"
-                  name="Give"
-                />
-              </div>
-              <div>
-                {/* <Cartes cardList={this.state.playerCardList} /> */}
-              </div>
-              <div className="d-grid gap-2">
-                <Button
-                  onClick={this.onClickStop}
-                  classe="btn btn-outline-warning btn-lg rounded-pill"
-                  color="white"
-                  // bcolor="rgba(178, 60, 253, 0.5"
-                  bcolor="#dc3545"
-                  name="Stop"
-                />
-              </div>
+                <DealerCard cardSelectedDealer={this.state.dealerCardList} />
+                <Cartes cardList={this.state.playerCardList} />
 
+                <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
+                  <div className="d-grid gap-2">
+                    <Button
+                      onClick={this.onClickGive}
+                      classe="btn btn-outline-warning btn-lg"
+                      color="white"
+                      bcolor="rgba(18, 102, 241, 0.7)"
+                      name="give"
+                    />
+                  </div>
+                  <div>
+                    {/* <Cartes cardList={this.state.playerCardList} /> */}
+                  </div>
+                  <div className="d-grid gap-2">
+                    <Button
+                      onClick={this.onClickStop}
+                      classe="btn btn-outline-danger btn-lg"
+                      color="white"
+                      bcolor="rgba(178, 60, 253, 0.5)"
+                      name="stop"
+                    />
+                  </div>
+
+                </div>
+              </div>
             </div>
-          </div>
+          )
+        }
         </div>
       );
     }
