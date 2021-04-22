@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from './componant/button/Button.jsx'
 import Cartes from "./componant/carte/Cartes";
 import Game from './componant/Play/Game.jsx'
-import DealerCard from "./componant/carte/DealerCard.jsx";
 
 const cardArray = [
   "KS", "QS", "JS", "AS", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "0S",
@@ -20,7 +19,6 @@ let temp = ""
 let arrayLength = 0
 let rndCarteTemp = "";
 let rndNumTemp = 0;
-// let cardSelected = []
 class Table extends React.Component {
   constructor() {
     super();
@@ -74,8 +72,6 @@ class Table extends React.Component {
       dealerValue += valueCarteDealer
 
       if (dealerValue > 21) {
-
-        // endGameAndWinner = this.calculateCard(dealerValue, "Dealer")
         endGameAndWinner = {
           endGame: true,
           nameOfWinner: "Player"
@@ -102,8 +98,6 @@ class Table extends React.Component {
         }
       }
     }
-
-    // une condition pour verifier le plus grand 
 
     console.log("update state on stop");
 
@@ -145,53 +139,12 @@ class Table extends React.Component {
 
     const firstTwoCardsPlayer = [cardSelected, cardSelected2]
 
-    //Bonus vérifier si il a Blackjack et donc il a gagné d'un coup
-
     this.setState({
       counterPlayer: firstPlayerValue,
       playerCardList: firstTwoCardsPlayer,
       startGame: true
     })
   }
-
-  // calculateCard(value, name) {
-  //   console.log("value in calculatecard", value)
-  //   console.log('calculateCard name ', name)
-  //   console.log('calculateCard value ', value)
-
-  //   if (value > 21) {
-  //     console.log("1 er condition")
-
-  //     // this.setState({
-  //     //   endGame: true,
-  //     //   nameOfWinner: name == "Dealer" ? "Player" : "Dealer"
-  //     // })
-
-  //     return {
-  //       endGame: true,
-  //       nameOfWinner: name == "Dealer" ? "Player" : "Dealer"
-  //     }
-
-  //   } else if (value == 21) {
-  //     console.log("2e condition")
-
-  //     // this.setState({
-  //     //   endGame: true,
-  //     //   nameOfWinner: name
-  //     // })
-
-  //     return {
-  //       endGame: true,
-  //       nameOfWinner: name
-  //     }
-  //   }
-  //   // else {
-  //   //   return {
-  //   //     endGame: false,
-  //   //     nameOfWinner: ""
-  //   //   }
-  //   // }
-  // }
 
   render() {
     if (this.state.startGame == false) {
@@ -204,7 +157,6 @@ class Table extends React.Component {
         <div className="playGame">
           <div style={{ height: '100vh', position: 'relative' }}>
             <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
-            {/* <DealerCard cardSelectedDealer={this.state.dealerCardList} /> */}
             <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
             {this.state.endGame && (<div className='winlost'>
               <h1>Winner is {this.state.nameOfWinner}</h1>
