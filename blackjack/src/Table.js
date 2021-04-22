@@ -103,8 +103,8 @@ class Table extends React.Component {
       )
     } else {
       return (
-        <div>
-            {/* <div>
+        <div className='playGame'>
+          {/* <div>
               <DealerCard cardSelectedDealer={this.state.dealerCardList} />
             <Cartes cardList={this.state.playerCardList} />
 
@@ -118,10 +118,11 @@ class Table extends React.Component {
               <div className="d-grid gap-2">
                 <Button
                   onClick={this.onClickGive}
-                  classe="btn btn-outline-warning btn-lg"
+                  classe="btn btn-outline-warning btn-lg rounded-pill"
                   color="white"
-                  bcolor="rgba(18, 102, 241, 0.7)"
-                  name="give"
+                  // bcolor="rgba(18, 102, 241, 0.7)"
+                  bcolor="#0d6efd"
+                  name="Give"
                 />
               </div>
               <div>
@@ -130,10 +131,11 @@ class Table extends React.Component {
               <div className="d-grid gap-2">
                 <Button
                   onClick={this.onClickStop}
-                  classe="btn btn-outline-danger btn-lg"
+                  classe="btn btn-outline-warning btn-lg rounded-pill"
                   color="white"
-                  bcolor="rgba(178, 60, 253, 0.5)"
-                  name="stop"
+                  // bcolor="rgba(178, 60, 253, 0.5"
+                  bcolor="#dc3545"
+                  name="Stop"
                 />
               </div>
 

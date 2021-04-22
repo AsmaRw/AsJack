@@ -3,9 +3,9 @@ import React from "react";
 
 class DealerCard extends React.Component {
 
-  
+
   render() {
-    console.log('dealerCard :',this.props.cardSelectedDealer);
+    console.log('dealerCard :', this.props.cardSelectedDealer);
     return (
       <div className="cartes">
         {this.props.cardSelectedDealer.map(
