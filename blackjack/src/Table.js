@@ -11,11 +11,11 @@ const cardArray = [
   "KH", "QH", "JH", "AH", "2H", "3H", "4H", "5H", "6H", "7H", "8H", "9H", "0H",
   "KC", "QC", "JC", "AC", "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "0C"];
 
-const min = 0
-const cardCount = 52
+// const min = 0
+// const cardCount = 52
 
-let rndNum = 0
-let temp = ""
+// let rndNum = 0
+// let temp = ""
 let arrayLength = 0
 let rndCarteTemp = "";
 let rndNumTemp = 0;
@@ -167,10 +167,10 @@ class Table extends React.Component {
               <div className="d-grid gap-2">
                 <Button
                   onClick={this.onClickGive}
-                  classe="btn btn-outline-warning btn-lg"
+                  classe="btn btn-outline-warning btn-lg rounded-pill"
                   color="white"
-                  bcolor="rgba(18, 102, 241, 0.7)"
-                  name="give"
+                  bcolor="#0d6efd"
+                  name="Give"
                 />
               </div>
               <div>
@@ -178,10 +178,10 @@ class Table extends React.Component {
               <div className="d-grid gap-2">
                 <Button
                   onClick={this.onClickStop}
-                  classe="btn btn-outline-danger btn-lg"
+                  classe="btn btn-outline-warning btn-lg rounded-pill"
                   color="white"
-                  bcolor="rgba(178, 60, 253, 0.5)"
-                  name="stop"
+                  bcolor="#dc3545"
+                  name="Stop"
                 />
               </div>
 
