@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from './componant/button/Button.jsx'
-import Cartes from "./componant/carte/Cartes";
-import Game from './componant/Play/Game.jsx'
+import Button from './componant/Button.jsx'
+import Cartes from "./views/Cartes";
+import Game from './componant/Game.jsx'
 
 const cardArray = [
   "KS", "QS", "JS", "AS", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "0S",
