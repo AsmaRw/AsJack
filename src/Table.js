@@ -3,8 +3,9 @@ import "./assets/style/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from './componant/Button'
 import Cartes from "./view/Cartes";
-import Game from './view/Game'
+import StartGame from './view/StartGame'
 
+// des cartes
 const cardArray = [
   "KS", "QS", "JS", "AS", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "0S",
   "KD", "QD", "JD", "AD", "2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "0D",
@@ -17,6 +18,7 @@ const cardArray = [
 
 let rndCarteTemp = "";
 let rndNumTemp = 0;
+
 class Table extends React.Component {
   constructor() {
     super();
@@ -32,29 +34,45 @@ class Table extends React.Component {
       nameOfWinner: ""
     }
   }
-
+  // Donner des cartes à Player1
   rndCarte() {
    
-
+                // le nombre des cartes est 53
     rndNumTemp = Math.floor(Math.random() * 53);
 
-    if (rndNumTemp > 52) { rndNumTemp = rndNumTemp - 10 } else if (rndNumTemp < 1) { rndNumTemp = rndNumTemp + 10 }
+    console.log("Player",rndNumTemp);
+
+    if (rndNumTemp > 52) { 
+    rndNumTemp = rndNumTemp - 10 
+    } else if (rndNumTemp < 1) {
+     rndNumTemp = rndNumTemp + 10 }
 
     rndCarteTemp = cardArray[rndNumTemp - 1];
 
+    // console.log("rndCarteTemp",rndCarteTemp);
     return rndCarteTemp
   }
 
+
   onClickStop = () => {
+    // Donner les valeurs aux des cartes Dealer
     const cardSelectedDealer = this.rndCarte()
     const cardSelectedDealer2 = this.rndCarte()
 
     const valueCarteDealer = this.transformCardIntoInt(cardSelectedDealer.split("")[0])
+    // console.log("Dealer", this.transformCardIntoInt(cardSelectedDealer.split("")[0]));
     const valueCarteDealer2 = this.transformCardIntoInt(cardSelectedDealer2.split("")[0])
-
+    // console.log("Dealer2", this.transformCardIntoInt(cardSelectedDealer2.split("")[0]));
+    
+    // le nom de carte qui vienne à cardArray[]
     const cardsDealer = [cardSelectedDealer, cardSelectedDealer2]
+    // console.log("cardsDealer", cardsDealer);
 
+    // Dealer Value
     let dealerValue = valueCarteDealer + valueCarteDealer2
+    console.log("dealerValue", dealerValue);
+
+
 
     let endGameAndWinner = {
       endGame: false,
@@ -79,6 +97,7 @@ class Table extends React.Component {
       }
     }
     if (dealerValue <= 21) {
+      
       if (this.state.counterPlayer > 21) {
         endGameAndWinner = {
           endGame: true,
@@ -147,7 +166,7 @@ class Table extends React.Component {
    
     if (this.state.startGame == false) {
       return (
-        <Game startGame={this.startGame} />
+        <StartGame startGame={this.startGame} />
       )
     } else {
       return (<div>
