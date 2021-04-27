@@ -40,7 +40,7 @@ class Table extends React.Component {
                 // le nombre des cartes est 53
     rndNumTemp = Math.floor(Math.random() * 53);
 
-    console.log("Player",rndNumTemp);
+    // console.log("Player",rndNumTemp);
 
     if (rndNumTemp > 52) { 
     rndNumTemp = rndNumTemp - 10 
@@ -55,7 +55,7 @@ class Table extends React.Component {
 
 
   onClickStop = () => {
-    // Donner les valeurs aux des cartes Dealer
+    // Donner les valeurs aux des cartes Random
     const cardSelectedDealer = this.rndCarte()
     const cardSelectedDealer2 = this.rndCarte()
 
@@ -70,7 +70,7 @@ class Table extends React.Component {
 
     // Dealer Value
     let dealerValue = valueCarteDealer + valueCarteDealer2
-    console.log("dealerValue", dealerValue);
+    // console.log("dealerValue", dealerValue);
 
 
 
@@ -96,8 +96,11 @@ class Table extends React.Component {
         break;
       }
     }
+   
+
+    // trouver le gagnant par apport les valeurs
     if (dealerValue <= 21) {
-      
+
       if (this.state.counterPlayer > 21) {
         endGameAndWinner = {
           endGame: true,
@@ -137,6 +140,7 @@ class Table extends React.Component {
     })
   }
 
+  // Donner les valeur 10 aux les cartes avec img 
   transformCardIntoInt(cardValue) {
     if (cardValue === "K" || cardValue === "Q" || cardValue === "J" || cardValue === "A" || cardValue === "0") {
       cardValue = "10"
@@ -163,6 +167,7 @@ class Table extends React.Component {
     })
   }
   render() {
+    
    
     if (this.state.startGame == false) {
       return (
@@ -184,7 +189,7 @@ class Table extends React.Component {
               <div className="d-grid gap-2">
                 <Button
                   onClick={this.onClickGive}
-                  classe="btn btn-outline-warning btn-lg rounded-pill"
+                  className="btn btn-outline-warning btn-lg rounded-pill"
                   color="white"
                   bcolor="#0d6efd"
                   name="Give"
@@ -195,7 +200,7 @@ class Table extends React.Component {
               <div className="d-grid gap-2">
                 <Button
                   onClick={this.onClickStop}
-                  classe="btn btn-outline-warning btn-lg rounded-pill"
+                  className="btn btn-outline-warning btn-lg rounded-pill"
                   color="white"
                   bcolor="#dc3545"
                   name="Stop"
